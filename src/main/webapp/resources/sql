@@ -40,5 +40,33 @@ reg_at datetime default now(),
 mod_at datetime default now(),
 primary key(cno));
 
+--2024-01-10
+create table file(
+uuid varchar(256) not null,
+save_dir varchar(256) not null,
+file_name varchar(256) not null,
+file_type tinyint(1) default 0,
+bno bigint,
+file_size bigint,
+reg_at datetime default now(),
+primary key(uuid));
+
+--2024-01-12
+테이블 생성
+create table member(
+email varchar(100) not null,
+pwd varchar(1000)not null,
+nick_name varchar(100) not null,
+reg_at datetime default now(),
+last_login datetime default null,
+primary key(email));
+
+create table auth_member(
+email varchar(100) not null,
+auth varchar(50) not null);
+
+alter table auth_member add constraint fk_auth foreign
+key(email) references member(email);
+
 
 

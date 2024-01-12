@@ -26,6 +26,8 @@
 					<option value="wc" ${type== 'wc' ? 'selected' :''}>Writer&Content</option>
 					<option value="twc" ${type== 'twc' ? 'selected' :''}>All</option>
 				</select> 
+				
+				
 				<input type="search" class="form-control me-2" name="keyword" value="${ph.pgvo.keyword }" placeholder="Search..."> 
 				<input type="hidden" name="pageNo" value="1"> 
 				<input type="hidden" name="qty" value="${ph.pgvo.qty}">
@@ -47,6 +49,8 @@
 				<th scope="col">writer</th>
 				<th scope="col">reg_date</th>
 				<th scope="col">read_count</th>
+				<th scope="col">comment_qty</th>
+				<th scope="col">file_qty</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -57,6 +61,8 @@
 					<td>${bvo.writer }</td>
 					<td>${bvo.regAt }</td>
 					<td>${bvo.readCount }</td>
+					<td>${bvo.cmtQty }</td>
+					<td>${bvo.hasFile }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

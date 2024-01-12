@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -19,6 +20,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @MapperScan(basePackages = {"com.myWeb.www.repository"})
 @ComponentScan(basePackages= {"com.myWeb.www.service"})
 @EnableTransactionManagement
+@EnableScheduling
 @Configuration
 public class RootConfig {
 

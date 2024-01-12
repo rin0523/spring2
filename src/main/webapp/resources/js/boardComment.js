@@ -65,8 +65,8 @@ function spreadCommentList(bno, page=1){
     getCommentListFromServer(bno, page).then(result =>{
         console.log(result.cmtList);
         //댓글 모양대로 뿌리기
+        const ul = document.getElementById('cmtListArea');
         if(result.cmtList.length > 0){
-            const ul = document.getElementById('cmtListArea');
             if(page==1){
                 ul.innerHTML = '';
 
@@ -139,8 +139,36 @@ document.addEventListener('click',(e)=>{
             spreadCommentList(bnoVal);
         })
 
-    }
+    }else if(e.target.classList.contains('del')){
+        let li = e.target.closest('li');
+        let cnoVal=li.dataset.cno;
+        let writerVal=li.dataset.writer;
+        removeCommentToServer(cnoVal,writerVal).then(result=>{
+            if(result=='1'){
+                alert("댓글 삭제 성공~!");
+                spreadCommentList(bnoVal);
+            }else if(result =='0'){
+                alert('작성자가 일치하지 않습니다.');
+            }
+        })
+        };
+
 });
+
+
+async function removeCommentToServer(cno,writer){
+    try{
+        const url="/comment/del/"+cno+"/"+writer;
+        const config={
+            method:"delete"
+        };
+        const resp=await fetch(url,config);
+        const result=await resp.text();
+        return result;
+    }catch(error){
+        console.log(error);
+    }
+}
 
 async function editCommentToServer(cmtDataMod){
     try {
